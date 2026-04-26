@@ -8,3 +8,8 @@ Thumbs.db
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# Environment / secrets — never commit
+.env
+.env.local
+node_modules/
