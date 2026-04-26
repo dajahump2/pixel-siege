@@ -54,20 +54,45 @@ const STEPS: Step[] = [
 
 // ─── Background ──────────────────────────────────────────────────────────────
 const Background: React.FC = () => (
-  <AbsoluteFill
-    style={{
-      background:
-        'radial-gradient(ellipse 120% 100% at 30% 40%, #1A0540 0%, #0D0221 55%, #0A1628 100%)',
-    }}
-  />
+  <AbsoluteFill style={{ background: '#0C0C0C' }} />
 );
+
+// ─── Grain Texture ───────────────────────────────────────────────────────────
+// SVG feTurbulence noise; seed shifts every frame for animated film-grain feel
+const GrainTexture: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{ pointerEvents: 'none' }}>
+      <svg
+        width={W}
+        height={H}
+        style={{ position: 'absolute', inset: 0, display: 'block' }}
+      >
+        <defs>
+          <filter id="grain-filter" x="0%" y="0%" width="100%" height="100%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.68"
+              numOctaves="4"
+              seed={frame % 120}
+              stitchTiles="stitch"
+              result="noise"
+            />
+            <feColorMatrix type="saturate" values="0" in="noise" />
+          </filter>
+        </defs>
+        <rect width={W} height={H} filter="url(#grain-filter)" opacity="0.085" />
+      </svg>
+    </AbsoluteFill>
+  );
+};
 
 // ─── Vignette ────────────────────────────────────────────────────────────────
 const Vignette: React.FC = () => (
   <AbsoluteFill
     style={{
       background:
-        'radial-gradient(ellipse 90% 85% at 50% 50%, transparent 55%, rgba(0,0,0,0.55) 100%)',
+        'radial-gradient(ellipse 85% 80% at 50% 50%, transparent 50%, rgba(0,0,0,0.7) 100%)',
       pointerEvents: 'none',
     }}
   />
@@ -493,6 +518,7 @@ export const MoneyTimeline: React.FC = () => {
   return (
     <AbsoluteFill>
       <Background />
+      <GrainTexture />
       <Vignette />
       <ParticleLayer frame={frame} />
       <TimelineLine frame={frame} />
