@@ -4,7 +4,7 @@ import { MoneyTimeline } from './MoneyTimeline';
 import { NarratedTimeline } from './NarratedTimeline';
 import { TOTAL_FRAMES, FPS } from './voTimings';
 import { PokOracleV1 } from './PokOracleV1';
-import { TOTAL_FRAMES as POKO_FRAMES } from './PokOracleV1/constants';
+import { TOTAL_FRAMES as POKO_FRAMES } from './PokOracleV1/voTimings';
 
 export const Root: React.FC = () => (
   <>
