@@ -21,9 +21,14 @@
   },
   "homepage": "https://github.com/dajahump2/pixel-siege#readme",
   "dependencies": {
-    "@remotion/cli": "^4.0.451",
+    "@remotion/bundler": "^4.0.454",
+    "@remotion/cli": "^4.0.454",
+    "@remotion/google-fonts": "^4.0.454",
+    "@remotion/renderer": "^4.0.454",
+    "@remotion/studio": "^4.0.454",
+    "@remotion/transitions": "^4.0.454",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "remotion": "^4.0.451"
+    "remotion": "^4.0.454"
   }
 }
